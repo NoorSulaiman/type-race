@@ -27,6 +27,11 @@
         ]
       }
     ],
+    "no-underscore-dangle": {
+      "allow": [
+        "_id"
+      ]
+    },
     "no-console": "off"
   }
 }
