@@ -31,6 +31,8 @@ router.post("/reset_password_request", (req, res) => {
     const { email } = req.body;
     User.findOne({ email }).then(user => {
         if (user) {
+            user.setResetPasswordToken()
+            user.save()
             sendResetPasswordEmail(user);
             res.json({});
         } else {
@@ -51,18 +53,20 @@ router.post("/validate_token", (req, res) => {
 
 router.post("/update_password", (req, res) => {
     const { password, token } = req.body.data;
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err) => {
         if (err) {
             res.status(401).json({ errors: { global: "Invalid token" } })
         } else {
-            User.findOne({ _id: decoded._id }).then((user) => {
-                if (user) {
-                    user.setPassword(password)
-                    user.save().then(() => res.json({}));
-                } else {
-                    res.status(404).json({ errors: { global: 'Invalid token' } });
-                }
-            });
+            User.findOneAndUpdate(
+                { resetPasswordToken: token },
+                { resetPasswordToken: "" },
+                { new: true })
+                .then(user => {
+                    if (user) {
+                        user.setPassword(password)
+                        res.json({})
+                    } else { res.status(404).json({ errors: { global: "Invalid token" } }) }
+                });
         }
     });
 });
