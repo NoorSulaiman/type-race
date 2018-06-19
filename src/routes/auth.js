@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../models/User';
-import { sendResetPasswordEmail } from '../mailer';
+import parseErrors from "../utils/parseErrors";
+import { sendResetPasswordEmail, sendPasswordChangedEmail } from '../mailer';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
@@ -32,9 +33,10 @@ router.post("/reset_password_request", (req, res) => {
     User.findOne({ email }).then(user => {
         if (user) {
             user.setResetPasswordToken()
-            user.save()
-            sendResetPasswordEmail(user);
-            res.json({});
+            user.save().then(user => {
+                sendResetPasswordEmail(user);
+                res.json({});
+            }).catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
         } else {
             res.status(400).json({ errors: { global: "Sorry somthing went wrong!" } })
         }
@@ -64,7 +66,10 @@ router.post("/update_password", (req, res) => {
                 .then(user => {
                     if (user) {
                         user.setPassword(password)
-                        res.json({})
+                        user.save().then(user => {
+                            sendPasswordChangedEmail(user, password)
+                            res.json({})
+                        })
                     } else { res.status(404).json({ errors: { global: "Invalid token" } }) }
                 });
         }
