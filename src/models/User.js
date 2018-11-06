@@ -43,6 +43,7 @@ schema.methods.generateResetPasswordLink = function generateResetPasswordLink() 
 schema.methods.generateJWT = function generateJWT() {
     return jwt.sign(
         {
+            username: this.username,
             email: this.email,
             confirmed: this.confirmed
         },
@@ -63,6 +64,7 @@ schema.methods.generateResetPasswordToken = function generateResetPasswordToken(
 
 schema.methods.toAuthJSON = function toAuthJSON() {
     return {
+        username: this.username,
         email: this.email,
         confirmed: this.confirmed,
         token: this.generateJWT()
