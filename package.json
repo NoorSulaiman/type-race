@@ -1,19 +1,19 @@
 {
-  "name": "bookworm-api",
+  "name": "type-race-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node -- src/index.js"
   },
-  "author": "Rem",
+  "author": "Noor",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-preset-env": "^1.7.0",
     "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
@@ -32,6 +32,8 @@
     "lodash": "^4.17.10",
     "mongoose": "^5.1.2",
     "mongoose-unique-validator": "^2.0.1",
-    "nodemailer": "^4.6.6"
+    "nodemailer": "^4.6.6",
+    "random-words": "^1.1.0",
+    "socket.io": "^2.1.1"
   }
 }

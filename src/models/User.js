@@ -7,6 +7,7 @@ import uniqueValidator from 'mongoose-unique-validator';
 
 dotenv.config()
 const schema = new mongoose.Schema({
+    username: { type: String, required: true },
     email: { type: String, required: true, lowercase: true, unique: true },
     passwordHash: { type: String, required: true },
     confirmed: { type: Boolean, default: false },
