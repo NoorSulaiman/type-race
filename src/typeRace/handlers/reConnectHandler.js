@@ -1,6 +1,6 @@
-export function reConnectHandler(email, players, socket) {
+export function reConnectHandler(user, players, socket) {
     players.slice(0, - 1).map((player, indx) => {
-        if (player.email === email) {
+        if (player.user.email === user.email) {
             players.pop()
             player.socket = socket;
             if (!((indx === (players.length - 1)) && (players.length % 2 !== 0))) {
