@@ -34,7 +34,7 @@ io.on('connection', function (socket) {
     socket.on('join', user => typeRace(user, players, socket))
     socket.on('disconnect', () => {
         emitToOponent(socket, players, 'waiting-reconnect', 'Waiting for player to reconnect')
-        setTimeout(() => disconnectHandler(socket, players), 10000)
+        setTimeout(() => disconnectHandler(socket, players), 20000)
     })
 
 })

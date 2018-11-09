@@ -13,8 +13,23 @@ export function reConnectHandler(user, players, socket) {
                     })
                     player.socket.emit('game-start', players[indx - 1].user.username)
                     players[indx - 1].socket.emit('game-start', player.user.username)
-                    player.socket.emit('random-words', words)
-                    players[indx - 1].socket.emit('random-words', words)
+                    player.socket.on('start-rounds', () => {
+                        if (player.rounds.length === 0) {
+                            player.socket.emit('round-1', words[0])
+                            players[indx - 1].socket.emit('round-1', words[0])
+                        } else if (player.rounds.length === 1) {
+                            player.socket.emit('round-2', words[1])
+                            players[indx - 1].socket.emit('round-2', words[1])
+                        } else if (player.rounds.length === 2) {
+                            player.socket.emit('round-3', words[2])
+                            players[indx - 1].socket.emit('round-3', words[2])
+                        }
+                        else {
+                            const rounds = player.rounds.reduce((a, b) => a + b, 0)
+                            player.socket.emit('game-end', rounds)
+                        }
+                    })
+                    //add round-1-end listiner
                 }
                 else if (indx % 2 === 0) {
                     player.socket.on('typing', text => {
@@ -22,12 +37,25 @@ export function reConnectHandler(user, players, socket) {
                     })
                     player.socket.emit('game-start', players[indx + 1].user.username)
                     players[indx + 1].socket.emit('game-start', player.user.username)
-                    player.socket.emit('random-words', words)
-                    players[indx + 1].socket.emit('random-words', words)
+                    player.socket.on('start-rounds', () => {
+                        if (player.rounds.length === 0) {
+                            player.socket.emit('round-1', words[0])
+                            players[indx + 1].socket.emit('round-1', words[0])
+                        } else if (player.rounds.length === 1) {
+                            player.socket.emit('round-2', words[1])
+                            players[indx + 1].socket.emit('round-2', words[1])
+                        } else if (player.rounds.length === 2) {
+                            player.socket.emit('round-3', words[2])
+                            players[indx + 1].socket.emit('round-3', words[2])
+                        }
+                        else {
+                            const rounds = player.rounds.reduce((a, b) => a + b, 0)
+                            player.socket.emit('game-end', rounds)
+                        }
+                    })
                 }
 
             }
-            player.socket.emit('waiting', "Waiting for another player to join!")
         }
     })
 
