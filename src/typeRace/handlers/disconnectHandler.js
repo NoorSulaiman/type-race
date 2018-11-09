@@ -4,12 +4,13 @@ export function disconnectHandler(socket, players) {
             if (players.length % 2 === 0) {
                 if ((indx + 1) % 2 === 0) {
                     players[indx - 1].socket.emit('player-disconnected', 'Oponent disconnected! You win!')
+                    players.splice(indx - 1, 2)
                 }
                 else if (indx % 2 === 0) {
                     players[indx + 1].socket.emit('player-disconnected', 'Oponent disconnected! You win!')
+                    players.splice(indx, 2)
                 }
             }
-            players.splice(indx, 1)
         }
         else { return }
     })

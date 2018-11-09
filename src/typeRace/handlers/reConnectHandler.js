@@ -1,4 +1,7 @@
+import randomWords from 'random-words';
+
 export function reConnectHandler(user, players, socket) {
+    const words = randomWords(3)
     players.slice(0, - 1).map((player, indx) => {
         if (player.user.email === user.email) {
             players.pop()
@@ -8,11 +11,19 @@ export function reConnectHandler(user, players, socket) {
                     player.socket.on('typing', text => {
                         players[indx - 1].socket.emit('other-typing', text)
                     })
+                    player.socket.emit('game-start', players[indx - 1].user.username)
+                    players[indx - 1].socket.emit('game-start', player.user.username)
+                    player.socket.emit('random-words', words)
+                    players[indx - 1].socket.emit('random-words', words)
                 }
                 else if (indx % 2 === 0) {
                     player.socket.on('typing', text => {
                         players[indx + 1].socket.emit('other-typing', text)
                     })
+                    player.socket.emit('game-start', players[indx + 1].user.username)
+                    players[indx + 1].socket.emit('game-start', player.user.username)
+                    player.socket.emit('random-words', words)
+                    players[indx + 1].socket.emit('random-words', words)
                 }
 
             }
