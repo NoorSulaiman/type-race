@@ -10,6 +10,7 @@ import users from './routes/users';
 import { typeRace } from './typeRace/typeRace';
 import { emitToOponent } from './typeRace/handlers/emitToOponent';
 import { disconnectHandler } from './typeRace/handlers/disconnectHandler';
+import { endGameHandler } from './typeRace/handlers/endGameHandler';
 
 
 dotenv.config()
@@ -35,6 +36,9 @@ io.on('connection', function (socket) {
     socket.on('disconnect', () => {
         emitToOponent(socket, players, 'waiting-reconnect', 'Waiting for player to reconnect')
         setTimeout(() => disconnectHandler(socket, players), 20000)
+    })
+    socket.on('deletePlayers', () => {
+        endGameHandler(socket, players)
     })
 
 })

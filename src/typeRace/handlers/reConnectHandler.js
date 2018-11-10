@@ -29,8 +29,57 @@ export function reConnectHandler(user, players, socket) {
                             player.socket.emit('game-end', rounds)
                         }
                     })
-                    //add round-1-end listiner
+                    player.socket.on('round-1-end', (email) => {
+                        if (player.user.email === email) {
+                            player.rounds.push(1)
+                            players[indx - 1].rounds.push(0)
+                            player.socket.emit('youWin')
+                            players[indx - 1].socket.emit('youLoose')
+                        } else {
+                            players[indx - 1].rounds.push(1)
+                            player.rounds.push(0)
+                            players[indx - 1].socket.emit('youWin')
+                            player.socket.emit('youLoose')
+                        }
+                        [player, players[indx - 1]].map(player => {
+                            player.socket.emit('round-2', words[1])
+                        })
+                    })
+                    player.socket.on('round-2-end', (email) => {
+                        if (player.user.email === email) {
+                            player.rounds.push(1)
+                            players[indx - 1].rounds.push(0)
+                            player.socket.emit('youWin')
+                            players[indx - 1].socket.emit('youLoose')
+                        } else {
+                            players[indx - 1].rounds.push(1)
+                            player.rounds.push(0)
+                            players[indx - 1].socket.emit('youWin')
+                            player.socket.emit('youLoose')
+                        }
+                        [player, players[indx - 1]].map(player => {
+                            player.socket.emit('round-3', words[2])
+                        })
+                    })
+                    player.socket.on('round-3-end', (email) => {
+                        if (player.user.email === email) {
+                            player.rounds.push(1)
+                            players[indx - 1].rounds.push(0)
+                            player.socket.emit('youWin')
+                            players[indx - 1].socket.emit('youLoose')
+                        } else {
+                            players[indx - 1].rounds.push(1)
+                            player.rounds.push(0)
+                            players[indx - 1].socket.emit('youWin')
+                            player.socket.emit('youLoose')
+                        }
+                        [player, players[indx - 1]].map(player => {
+                            const rounds = player.rounds.reduce((a, b) => a + b, 0)
+                            player.socket.emit('game-end', rounds)
+                        })
+                    })
                 }
+
                 else if (indx % 2 === 0) {
                     player.socket.on('typing', text => {
                         players[indx + 1].socket.emit('other-typing', text)
@@ -52,6 +101,55 @@ export function reConnectHandler(user, players, socket) {
                             const rounds = player.rounds.reduce((a, b) => a + b, 0)
                             player.socket.emit('game-end', rounds)
                         }
+                    })
+                    player.socket.on('round-1-end', (email) => {
+                        if (player.user.email === email) {
+                            player.rounds.push(1)
+                            players[indx + 1].rounds.push(0)
+                            player.socket.emit('youWin')
+                            players[indx + 1].socket.emit('youLoose')
+                        } else {
+                            players[indx + 1].rounds.push(1)
+                            player.rounds.push(0)
+                            players[indx + 1].socket.emit('youWin')
+                            player.socket.emit('youLoose')
+                        }
+                        [player, players[indx + 1]].map(player => {
+                            player.socket.emit('round-2', words[1])
+                        })
+                    })
+                    player.socket.on('round-2-end', (email) => {
+                        if (player.user.email === email) {
+                            player.rounds.push(1)
+                            players[indx + 1].rounds.push(0)
+                            player.socket.emit('youWin')
+                            players[indx + 1].socket.emit('youLoose')
+                        } else {
+                            players[indx + 1].rounds.push(1)
+                            player.rounds.push(0)
+                            players[indx + 1].socket.emit('youWin')
+                            player.socket.emit('youLoose')
+                        }
+                        [player, players[indx + 1]].map(player => {
+                            player.socket.emit('round-3', words[2])
+                        })
+                    })
+                    player.socket.on('round-3-end', (email) => {
+                        if (player.user.email === email) {
+                            player.rounds.push(1)
+                            players[indx + 1].rounds.push(0)
+                            player.socket.emit('youWin')
+                            players[indx + 1].socket.emit('youLoose')
+                        } else {
+                            players[indx + 1].rounds.push(1)
+                            player.rounds.push(0)
+                            players[indx + 1].socket.emit('youWin')
+                            player.socket.emit('youLoose')
+                        }
+                        [player, players[indx + 1]].map(player => {
+                            const rounds = player.rounds.reduce((a, b) => a + b, 0)
+                            player.socket.emit('game-end', rounds)
+                        })
                     })
                 }
 
