@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node -- src/index.js"
+    "clean": "rm -rf build && mkdir build",
+    "start": "node ./build/index.js",
+    "heroku-postbuild": "cd build/client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "author": "Noor",
   "license": "ISC",

@@ -12,7 +12,8 @@ const schema = new mongoose.Schema({
     passwordHash: { type: String, required: true },
     confirmed: { type: Boolean, default: false },
     confirmationToken: { type: String, default: "" },
-    resetPasswordToken: { type: String, default: "" }
+    resetPasswordToken: { type: String, default: "" },
+    points: { type: Number, default: 0 }
 },
     { timestamps: true }
 );

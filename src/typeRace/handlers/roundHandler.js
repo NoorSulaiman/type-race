@@ -4,7 +4,7 @@ export function roundHandler(players) {
     const newPlayers = players.slice(-2);
     const words = randomWords(3);
 
-    if (newPlayers[0].socket._eventsCount < 4) {
+    if (newPlayers[0].socket._eventsCount < 5) {
         console.log('from roundHandler');
 
         //text stream
@@ -36,12 +36,12 @@ export function roundHandler(players) {
                     newPlayers[0].rounds.push(1)
                     newPlayers[1].rounds.push(0)
                     newPlayers[0].socket.emit('youWin')
-                    newPlayers[1].socket.emit('youLoose')
+                    newPlayers[1].socket.emit('youLose')
                 } else {
                     newPlayers[1].rounds.push(1)
                     newPlayers[0].rounds.push(0)
                     newPlayers[1].socket.emit('youWin')
-                    newPlayers[0].socket.emit('youLoose')
+                    newPlayers[0].socket.emit('youLose')
                 }
                 newPlayers.map(player => {
                     player.socket.emit('round-2', words[1])
@@ -52,12 +52,12 @@ export function roundHandler(players) {
                     newPlayers[0].rounds.push(1)
                     newPlayers[1].rounds.push(0)
                     newPlayers[0].socket.emit('youWin')
-                    newPlayers[1].socket.emit('youLoose')
+                    newPlayers[1].socket.emit('youLose')
                 } else {
                     newPlayers[1].rounds.push(1)
                     newPlayers[0].rounds.push(0)
                     newPlayers[1].socket.emit('youWin')
-                    newPlayers[0].socket.emit('youLoose')
+                    newPlayers[0].socket.emit('youLose')
                 }
                 newPlayers.map(player => {
                     player.socket.emit('round-3', words[2])
@@ -68,12 +68,12 @@ export function roundHandler(players) {
                     newPlayers[0].rounds.push(1)
                     newPlayers[1].rounds.push(0)
                     newPlayers[0].socket.emit('youWin')
-                    newPlayers[1].socket.emit('youLoose')
+                    newPlayers[1].socket.emit('youLose')
                 } else {
                     newPlayers[1].rounds.push(1)
                     newPlayers[0].rounds.push(0)
                     newPlayers[1].socket.emit('youWin')
-                    newPlayers[0].socket.emit('youLoose')
+                    newPlayers[0].socket.emit('youLose')
                 }
                 newPlayers.map(player => {
                     const rounds = player.rounds.reduce((a, b) => a + b, 0)

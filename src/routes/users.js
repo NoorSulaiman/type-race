@@ -24,6 +24,21 @@ router.post("/reconfirm", (req, res) => {
     }).catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
 })
 
-
-
+router.post("/points", (req, res) => {
+    const { data } = req.body;
+    User.findOneAndUpdate(
+        { email: data.email },
+        { $inc: { points: data.points } },
+        { new: true }
+    ).catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
+})
+router.get("/", (req, res) => {
+    User.find({}).then(users => {
+        let usersArray = [];
+        users.map(user => {
+            usersArray.push({ username: user.username, points: user.points })
+        })
+        res.json({ users: usersArray })
+    }).catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
+})
 export default router;

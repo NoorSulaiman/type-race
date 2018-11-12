@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const from = '"Bookworm" <info@bookworm.com>';
+const from = '"Type-Race" <info@typerace.com>';
 
 function setup() {
     return nodemailer.createTransport({
@@ -18,8 +18,8 @@ export function sendConfirmationEmail(user) {
     const email = {
         from,
         to: user.email,
-        subject: "Welcome to Bookworm",
-        text: `Welcome to Bookworm. Please, confirm your email.
+        subject: "Welcome to Type-Race",
+        text: `Welcome to Type-Race. Please, confirm your email.
         ${user.generateConfirmationUrl()}
         `
     };
@@ -57,7 +57,7 @@ If you're receiving this email and have NOT actually reset your password,
 contact us immediately at support@bookworm.com for assistance.
 
 Sincerely,
-Yor Bookworm Team`
+Yor Type-Race Team`
     };
 
     tranport.sendMail(email);

@@ -8,7 +8,6 @@ import socket from 'socket.io';
 import auth from './routes/auth';
 import users from './routes/users';
 import { typeRace } from './typeRace/typeRace';
-import { emitToOponent } from './typeRace/handlers/emitToOponent';
 import { disconnectHandler } from './typeRace/handlers/disconnectHandler';
 import { endGameHandler } from './typeRace/handlers/endGameHandler';
 
@@ -30,15 +29,18 @@ let io = socket(app.listen(8080, () => console.log('running on local host 8080')
 
 
 let players = [];
+let guests = [];
 
 io.on('connection', function (socket) {
-    socket.on('join', user => typeRace(user, players, socket))
+    socket.on('join', user => typeRace(user, players, guests, socket))
     socket.on('disconnect', () => {
-        emitToOponent(socket, players, 'waiting-reconnect', 'Waiting for player to reconnect')
-        setTimeout(() => disconnectHandler(socket, players), 20000)
+        disconnectHandler(socket, players, guests)
     })
     socket.on('deletePlayers', () => {
         endGameHandler(socket, players)
+    })
+    socket.on('endGameByPlayer', () => {
+        disconnectHandler(socket, players, guests)
     })
 
 })

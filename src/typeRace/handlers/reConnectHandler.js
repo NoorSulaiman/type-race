@@ -34,12 +34,12 @@ export function reConnectHandler(user, players, socket) {
                             player.rounds.push(1)
                             players[indx - 1].rounds.push(0)
                             player.socket.emit('youWin')
-                            players[indx - 1].socket.emit('youLoose')
+                            players[indx - 1].socket.emit('youLose')
                         } else {
                             players[indx - 1].rounds.push(1)
                             player.rounds.push(0)
                             players[indx - 1].socket.emit('youWin')
-                            player.socket.emit('youLoose')
+                            player.socket.emit('youLose')
                         }
                         [player, players[indx - 1]].map(player => {
                             player.socket.emit('round-2', words[1])
@@ -50,12 +50,12 @@ export function reConnectHandler(user, players, socket) {
                             player.rounds.push(1)
                             players[indx - 1].rounds.push(0)
                             player.socket.emit('youWin')
-                            players[indx - 1].socket.emit('youLoose')
+                            players[indx - 1].socket.emit('youLose')
                         } else {
                             players[indx - 1].rounds.push(1)
                             player.rounds.push(0)
                             players[indx - 1].socket.emit('youWin')
-                            player.socket.emit('youLoose')
+                            player.socket.emit('youLose')
                         }
                         [player, players[indx - 1]].map(player => {
                             player.socket.emit('round-3', words[2])
@@ -66,12 +66,12 @@ export function reConnectHandler(user, players, socket) {
                             player.rounds.push(1)
                             players[indx - 1].rounds.push(0)
                             player.socket.emit('youWin')
-                            players[indx - 1].socket.emit('youLoose')
+                            players[indx - 1].socket.emit('youLose')
                         } else {
                             players[indx - 1].rounds.push(1)
                             player.rounds.push(0)
                             players[indx - 1].socket.emit('youWin')
-                            player.socket.emit('youLoose')
+                            player.socket.emit('youLose')
                         }
                         [player, players[indx - 1]].map(player => {
                             const rounds = player.rounds.reduce((a, b) => a + b, 0)
@@ -107,12 +107,12 @@ export function reConnectHandler(user, players, socket) {
                             player.rounds.push(1)
                             players[indx + 1].rounds.push(0)
                             player.socket.emit('youWin')
-                            players[indx + 1].socket.emit('youLoose')
+                            players[indx + 1].socket.emit('youLose')
                         } else {
                             players[indx + 1].rounds.push(1)
                             player.rounds.push(0)
                             players[indx + 1].socket.emit('youWin')
-                            player.socket.emit('youLoose')
+                            player.socket.emit('youLose')
                         }
                         [player, players[indx + 1]].map(player => {
                             player.socket.emit('round-2', words[1])
@@ -123,12 +123,12 @@ export function reConnectHandler(user, players, socket) {
                             player.rounds.push(1)
                             players[indx + 1].rounds.push(0)
                             player.socket.emit('youWin')
-                            players[indx + 1].socket.emit('youLoose')
+                            players[indx + 1].socket.emit('youLose')
                         } else {
                             players[indx + 1].rounds.push(1)
                             player.rounds.push(0)
                             players[indx + 1].socket.emit('youWin')
-                            player.socket.emit('youLoose')
+                            player.socket.emit('youLose')
                         }
                         [player, players[indx + 1]].map(player => {
                             player.socket.emit('round-3', words[2])
@@ -139,12 +139,12 @@ export function reConnectHandler(user, players, socket) {
                             player.rounds.push(1)
                             players[indx + 1].rounds.push(0)
                             player.socket.emit('youWin')
-                            players[indx + 1].socket.emit('youLoose')
+                            players[indx + 1].socket.emit('youLose')
                         } else {
                             players[indx + 1].rounds.push(1)
                             player.rounds.push(0)
                             players[indx + 1].socket.emit('youWin')
-                            player.socket.emit('youLoose')
+                            player.socket.emit('youLose')
                         }
                         [player, players[indx + 1]].map(player => {
                             const rounds = player.rounds.reduce((a, b) => a + b, 0)
