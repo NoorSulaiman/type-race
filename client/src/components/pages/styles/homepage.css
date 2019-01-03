@@ -29,3 +29,24 @@
 form.ui.loading.form:before {
     background: none !important;
 }
+
+#infoContainer {
+    margin-left: 10%;
+    margin-top: 10%;
+    height: 20em;
+    width: 70%;
+    background: url('../../../assets/images/paper.png');
+    background-size: cover;
+}
+#infoContainer h2 {
+    font-family: 'Special Elite', cursive;
+    margin-top: 8%;
+    margin-left: 2%;
+}
+#infoContainer ol {
+    font-family: 'Special Elite', cursive;
+    font-size: 1.2em;
+}
+#infoContainer ol li {
+    margin-bottom: 2%;
+}

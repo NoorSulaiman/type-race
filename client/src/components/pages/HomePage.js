@@ -82,6 +82,27 @@ class HomePage extends React.Component {
                                 )}
                             </Grid.Column>
                         </Grid.Row>
+                        {!this.state.signup && !this.state.login && (
+                            <Grid.Row>
+                                <div id="infoContainer">
+                                    <h2>Game Instructions:</h2>
+                                    <ol>
+                                        <li>
+                                            A random word will popup and you
+                                            have to type it faster than your
+                                            opponent.
+                                        </li>
+                                        <li>
+                                            You have to hit Enter to be able to
+                                            submit the word.
+                                        </li>
+                                        <li>
+                                            Winner will have best of 3 rounds.
+                                        </li>
+                                    </ol>
+                                </div>
+                            </Grid.Row>
+                        )}
                     </Grid>
                 )}
             </div>
