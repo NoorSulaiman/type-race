@@ -1,0 +1,17 @@
+#confirm {
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 10% !important;
+}
+.gameContainer {
+    height: 45em;
+    background: url('../../../assets/images/paper.png');
+    background-size: cover;
+}
+
+#gameGrid {
+    padding: 5%;
+}
+#endGame {
+    margin-top: 10%;
+}

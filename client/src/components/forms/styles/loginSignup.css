@@ -1,0 +1,23 @@
+.loginFormContainer {
+    height: 28em;
+    background: url('../../../assets/images/paper.png');
+    background-size: cover;
+}
+
+.loginForm {
+    padding: 5%;
+    padding-top: 24%;
+}
+
+.signupFormContainer {
+    margin-top: -8%;
+    height: 32em;
+    background: url('../../../assets/images/paper.png');
+    background-size: cover;
+    overflow: auto;
+}
+
+.signupForm {
+    padding: 7%;
+    padding-top: 22%;
+}

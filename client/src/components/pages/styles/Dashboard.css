@@ -1,0 +1,10 @@
+#dashboardWrapper {
+    height: 30em;
+    background: url('../../../assets/images/paper.png');
+    background-size: cover;
+}
+
+#dashboardWrapper > div {
+    padding: 5%;
+    padding-top: 10%;
+}

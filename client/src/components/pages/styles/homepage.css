@@ -1,0 +1,31 @@
+#logoContainer {
+    height: 7em;
+    margin: auto;
+    margin-top: 2%;
+    background: url('../../../assets/images/paper.png');
+    background-size: cover;
+}
+#gameTitle {
+    margin-top: 5%;
+    font-family: 'Special Elite', cursive;
+    font-size: 4em;
+}
+.typeWriter {
+    width: 100%;
+    height: 400px;
+    background: url('../../../assets/images/typewriter.png');
+    background-size: cover;
+}
+.mainButton {
+    width: 40%;
+    margin-left: 30%;
+    transition: transform 0.1s;
+}
+
+.mainButton:active {
+    transform: scale(0.8, 0.8) translateY(2px);
+}
+
+form.ui.loading.form:before {
+    background: none !important;
+}
